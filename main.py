@@ -10,21 +10,44 @@
 # • prix total incluant le pourboire et
 # • la valeur du pourboire avec la mention que c'est inclus dans le prix total.
 
+
+import locale
+locale.setlocale(locale.LC_ALL, '')
+
 # CONSTANTES ET VARIABLES
 
 class ValeursLimites:  # Les valeurs où la fonction pour calculer le pourboire change
-    POUR_MONTANT_FIXE: float = 10  # En bas de 10$, on paye 1.50$ de pourboire
-    POUR_POURCENTAGE: float = 100  # Entre 10$ et 100$, on paye 15% de plus en pourboire
-    POUR_LINEAIRE: float = 200  # Entre 100 et 200$, c'est une fonction linéaire
+    POUR_MONTANT_FIXE = 10  # En bas de 10$, on paye 1.50$ de pourboire
+    POUR_POURCENTAGE = 100  # Entre 10$ et 100$, on paye 15% de plus en pourboire
+    POUR_LINEAIRE = 200  # Entre 100 et 200$, c'est une fonction linéaire
     # En haut de 200$, il n'y a pas de pourboire à donner
 
 
-PRIX = float  # Prix de l'achat
+prixAvantPourboire = float  # Prix de l'achat
+total = float  # Prix avec pourboire
 
 
-montantFixe = 1.5  # Lorsque le prix est en bas de 10$
-tauxAPayer = 0.15  # Lorsque le prix est entre 10 et 100$
-fonctionLineaire = (0.5 * PRIX) + 15  # Lorsque le prix est entre 100 et 200$
+MONTANT_FIXE = 1.5  # Lorsque le prix est en bas de 10$
+TAUX_A_PAYER = 0.15  # Lorsque le prix est entre 10 et 100$
+MONTANT_FIXE_DE_FONCTION = 15  # Lorsque le prix est entre 100 et 200$
+TAUX_DE_FONCTION = 0.05  # Lorsque le prix est entre 100 et 200$
 
 
 # LOGIQUE
+
+prixAvantPourboire = (input('Quel est le prix total de l\'achat?'))
+
+if 0 < float(prixAvantPourboire) < 10:
+    print('entre 0 et 10')
+elif 10 <= float(prixAvantPourboire) < 100:
+    print('entre 10 et 100')
+elif 100 <= float(prixAvantPourboire) < 200:
+    print('entre 100 et 200')
+elif 200 <= float(prixAvantPourboire):
+    print('200+')
+else:
+    print('wtf')
+
+# LIMITES
+
+# Faut input un chiffre
