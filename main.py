@@ -10,9 +10,13 @@
 # • prix total incluant le pourboire et
 # • la valeur du pourboire avec la mention que c'est inclus dans le prix total.
 
+# LIMITES DU PROGRAMME : Il faut input un chiffre
 
+from typing import Final
 import locale
-locale.setlocale(locale.LC_ALL, '')
+
+locale.setlocale(locale.LC_ALL, '')  # Set l'argent à la monnaie locale de l'utilisateur
+
 
 # CONSTANTES ET VARIABLES
 
@@ -23,31 +27,31 @@ class ValeursLimites:  # Les valeurs où la fonction pour calculer le pourboire 
     # En haut de 200$, il n'y a pas de pourboire à donner
 
 
-prixAvantPourboire = float  # Prix de l'achat
-total = float  # Prix avec pourboire
+prixAvantPourboire: float  # Prix de l'achat
+coutTotal: float  # Prix avec pourboire
 
-
-MONTANT_FIXE = 1.5  # Lorsque le prix est en bas de 10$
-TAUX_A_PAYER = 0.15  # Lorsque le prix est entre 10 et 100$
-MONTANT_FIXE_DE_FONCTION = 15  # Lorsque le prix est entre 100 et 200$
-TAUX_DE_FONCTION = 0.05  # Lorsque le prix est entre 100 et 200$
-
+MONTANT_FIXE: Final = 1.5  # Lorsque le prix est en bas de 10$
+TAUX_A_PAYER: Final = 0.15  # Lorsque le prix est entre 10 et 100$
+MONTANT_FIXE_DE_FONCTION: Final = 15  # Lorsque le prix est entre 100 et 200$
+TAUX_DE_FONCTION: Final = 0.05  # Lorsque le prix est entre 100 et 200$
 
 # LOGIQUE
 
-prixAvantPourboire = (input('Quel est le prix total de l\'achat?'))
+print('Quel est le prix total de l\'achat?')
+prixAvantPourboire = float(input(''))
 
-if 0 < float(prixAvantPourboire) < 10:
-    print('entre 0 et 10')
-elif 10 <= float(prixAvantPourboire) < 100:
-    print('entre 10 et 100')
-elif 100 <= float(prixAvantPourboire) < 200:
-    print('entre 100 et 200')
-elif 200 <= float(prixAvantPourboire):
-    print('200+')
+if 0 < prixAvantPourboire < 10:
+    coutTotal = prixAvantPourboire + MONTANT_FIXE
+elif 10 <= prixAvantPourboire < 100:
+    coutTotal = prixAvantPourboire + (prixAvantPourboire * TAUX_A_PAYER)
+elif 100 <= prixAvantPourboire < 200:
+    coutTotal = prixAvantPourboire + (prixAvantPourboire * TAUX_DE_FONCTION) + MONTANT_FIXE_DE_FONCTION
+elif 200 <= prixAvantPourboire:
+    coutTotal = prixAvantPourboire
 else:
     print('wtf')
 
-# LIMITES
+print('Le coût total est de {:.2f} $, ce qui inclue le pourboire de'.format(coutTotal),
+      locale.currency(coutTotal-prixAvantPourboire))
 
-# Faut input un chiffre
+# J'ai mis un {:.2f} pour montrer que je sais comment faire mais je préfère locale.currency
