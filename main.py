@@ -10,7 +10,7 @@
 # • prix total incluant le pourboire et
 # • la valeur du pourboire avec la mention que c'est inclus dans le prix total.
 
-# LIMITES DU PROGRAMME : Il faut input un chiffre
+# LIMITES DU PROGRAMME : Il faut que l'utilisateur input un chiffre
 
 from typing import Final
 import locale
