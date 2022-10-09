@@ -29,6 +29,7 @@ class ValeursLimites:  # Les valeurs où la fonction pour calculer le pourboire 
 
 prixAvantPourboire: float  # Prix de l'achat
 coutTotal: float  # Prix avec pourboire
+pourboire: float
 
 MONTANT_FIXE: Final = 1.5  # Lorsque le prix est en bas de 10$
 TAUX_A_PAYER: Final = 0.15  # Lorsque le prix est entre 10 et 100$
@@ -51,7 +52,9 @@ elif 200 <= prixAvantPourboire:
 else:
     print('.')
 
+pourboire = coutTotal - prixAvantPourboire
+
 print('Le coût total est de {:.2f} $, ce qui inclue le pourboire de'.format(coutTotal),
-      locale.currency(coutTotal-prixAvantPourboire))
+      locale.currency(pourboire))
 
 # J'ai mis un {:.2f} pour montrer que je sais comment faire mais je préfère locale.currency
