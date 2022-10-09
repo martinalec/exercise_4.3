@@ -49,7 +49,7 @@ elif 100 <= prixAvantPourboire < 200:
 elif 200 <= prixAvantPourboire:
     coutTotal = prixAvantPourboire
 else:
-    print('wtf')
+    print('.')
 
 print('Le coût total est de {:.2f} $, ce qui inclue le pourboire de'.format(coutTotal),
       locale.currency(coutTotal-prixAvantPourboire))
