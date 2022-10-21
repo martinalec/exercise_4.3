@@ -5,7 +5,6 @@
 # Ensuite, jusqu'à 100$, on calcule simplement 15%. À partir de 100$, un montant de
 # départ est fixé à 15$ et on ajoute 5%. Pour une facture à partir de 200$ le
 # pourboire est inclus.
-
 # On affiche la facture
 # • prix total incluant le pourboire et
 # • la valeur du pourboire avec la mention que c'est inclus dans le prix total.
