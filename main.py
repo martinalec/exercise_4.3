@@ -26,7 +26,7 @@ class ValeursLimites:  # Les valeurs où la fonction pour calculer le pourboire 
     POUR_LINEAIRE = 200  # Entre 100 et 200$, c'est une fonction linéaire
     # En haut de 200$, il n'y a pas de pourboire à donner
 
-
+# FIXME les variables doivent utiliser la notation snake_casing
 prixAvantPourboire: float  # Prix de l'achat
 coutTotal: float  # Prix avec pourboire
 pourboire: float
@@ -38,23 +38,25 @@ TAUX_DE_FONCTION: Final = 0.05  # Lorsque le prix est entre 100 et 200$
 
 # LOGIQUE
 
+# FIXME on peut combiner le print et le input
 print('Quel est le prix total de l\'achat?')
 prixAvantPourboire = float(input(''))
 
 if 0 < prixAvantPourboire < 10:
     coutTotal = prixAvantPourboire + MONTANT_FIXE
-elif 10 <= prixAvantPourboire < 100:
+elif 10 <= prixAvantPourboire < 100:  # FIXME simplement tester < 100, pas besoin de tester >= 10 car c'est déjà fait
     coutTotal = prixAvantPourboire + (prixAvantPourboire * TAUX_A_PAYER)
 elif 100 <= prixAvantPourboire < 200:
     coutTotal = prixAvantPourboire + (prixAvantPourboire * TAUX_DE_FONCTION) + MONTANT_FIXE_DE_FONCTION
-elif 200 <= prixAvantPourboire:
+elif 200 <= prixAvantPourboire:  # FIXME un simple else fera l'affaire, et ca règlera le problème plus loin
     coutTotal = prixAvantPourboire
 else:
     print('.')
-
+# FIXME il y a un warning associé à cette variable "coutTotal can be undefined".
 pourboire = coutTotal - prixAvantPourboire
 
 print('Le coût total est de {:.2f} $, ce qui inclue le pourboire de'.format(coutTotal),
       locale.currency(pourboire))
 
 # J'ai mis un {:.2f} pour montrer que je sais comment faire mais je préfère locale.currency
+# PMC parfait pas de problème !
