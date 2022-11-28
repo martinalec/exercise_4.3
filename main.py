@@ -25,9 +25,9 @@ class ValeursLimites:  # Les valeurs où la fonction pour calculer le pourboire 
     POUR_LINEAIRE = 200  # Entre 100 et 200$, c'est une fonction linéaire
     # En haut de 200$, il n'y a pas de pourboire à donner
 
-# FIXME les variables doivent utiliser la notation snake_casing
-prixAvantPourboire: float  # Prix de l'achat
-coutTotal: float  # Prix avec pourboire
+
+prix_avant_pourboire: float  # Prix de l'achat
+cout_total: float  # Prix avec pourboire
 pourboire: float
 
 MONTANT_FIXE: Final = 1.5  # Lorsque le prix est en bas de 10$
@@ -37,24 +37,21 @@ TAUX_DE_FONCTION: Final = 0.05  # Lorsque le prix est entre 100 et 200$
 
 # LOGIQUE
 
-# FIXME on peut combiner le print et le input
-print('Quel est le prix total de l\'achat?')
-prixAvantPourboire = float(input(''))
+prix_avant_pourboire = float(input(('Quel est le prix total de l\'achat?')))
 
-if 0 < prixAvantPourboire < 10:
-    coutTotal = prixAvantPourboire + MONTANT_FIXE
-elif 10 <= prixAvantPourboire < 100:  # FIXME simplement tester < 100, pas besoin de tester >= 10 car c'est déjà fait
-    coutTotal = prixAvantPourboire + (prixAvantPourboire * TAUX_A_PAYER)
-elif 100 <= prixAvantPourboire < 200:
-    coutTotal = prixAvantPourboire + (prixAvantPourboire * TAUX_DE_FONCTION) + MONTANT_FIXE_DE_FONCTION
-elif 200 <= prixAvantPourboire:  # FIXME un simple else fera l'affaire, et ca règlera le problème plus loin
-    coutTotal = prixAvantPourboire
+
+if 0 < prix_avant_pourboire < 10:
+    cout_total = prix_avant_pourboire + MONTANT_FIXE
+elif 10 <= prix_avant_pourboire < 100:
+    cout_total = prix_avant_pourboire + (prix_avant_pourboire * TAUX_A_PAYER)
+elif 100 <= prix_avant_pourboire < 200:
+    cout_total = prix_avant_pourboire + (prix_avant_pourboire * TAUX_DE_FONCTION) + MONTANT_FIXE_DE_FONCTION
 else:
-    print('.')
-# FIXME il y a un warning associé à cette variable "coutTotal can be undefined".
-pourboire = coutTotal - prixAvantPourboire
+    cout_total = prix_avant_pourboire
 
-print('Le coût total est de {:.2f} $, ce qui inclue le pourboire de'.format(coutTotal),
+pourboire = cout_total - prix_avant_pourboire
+
+print('Le coût total est de {:.2f} $, ce qui inclue le pourboire de'.format(cout_total),
       locale.currency(pourboire))
 
 # J'ai mis un {:.2f} pour montrer que je sais comment faire mais je préfère locale.currency
